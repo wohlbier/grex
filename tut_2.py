@@ -74,12 +74,12 @@ class tut_2(gr.top_block, Qt.QWidget):
         ##################################################
         self.base_freq = base_freq = 2e3
         self.samp_rate = samp_rate = 100*base_freq
-        self.freq = freq = base_freq
+        self.freq = freq = 5*base_freq
 
         ##################################################
         # Blocks
         ##################################################
-        self._freq_range = Range(0.1*base_freq, 10*base_freq, 200, base_freq, 200)
+        self._freq_range = Range(0.1*base_freq, 10*base_freq, 200, 5*base_freq, 200)
         self._freq_win = RangeWidget(self._freq_range, self.set_freq, 'freq', "counter_slider", float)
         self.top_grid_layout.addWidget(self._freq_win)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
@@ -148,7 +148,7 @@ class tut_2(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_0.enable_control_panel(False)
 
 
-        self.qtgui_freq_sink_x_0.set_plot_pos_half(not False)
+        self.qtgui_freq_sink_x_0.set_plot_pos_half(not True)
 
         labels = ['', '', '', '', '',
             '', '', '', '', '']
@@ -193,7 +193,7 @@ class tut_2(gr.top_block, Qt.QWidget):
 
     def set_base_freq(self, base_freq):
         self.base_freq = base_freq
-        self.set_freq(self.base_freq)
+        self.set_freq(5*self.base_freq)
         self.set_samp_rate(100*self.base_freq)
 
     def get_samp_rate(self):
